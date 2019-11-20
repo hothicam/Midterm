@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body style="background-color:#e6ffff;">
+	<center><h1>Quản Lý Sinh Viên</h1></center>
+	<center><table>
+            <tr>
+                <td>Tên</td>
+                <td><input type="text" id="name" /></td>
+            </tr>
+            <tr>
+                <td>Lớp</td>
+                <td><input type="text" id="class" /></td>
+            </tr>
+            <tr>
+                <td>Jss</td>
+                <td><input type="text" id="jss" /></td>
+            </tr>
+            <tr>
+                <td>Android</td>
+                <td><input type="text" id="android" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="button" id="add" style="margin-top: 20px" onclick="addRecord();">Add </button>
+                <button type="button" id="display" style="margin-top: 20px" onclick="displayRecord();">Display</button>
+                <a href=".\Them.html"><button style="margin-top: 20px"  type="button">Edit</button></a>
+                <button type="button" id="display" style="margin-top: 20px"  onclick="delete_iterm();">Delete All</button>
+                </td>
+            </tr>
+    </table></center>
+    <center ><div style="margin-top: 20px" id="output"></div>
+	<div style="margin-top: 20px" id="values"></div>
+	<div style="margin-top: 20px" id="newStudent"></div>
+</center>
+
+<script type="text/javascript">
+		var newStudent = [{
+     "name":        "",
+ 	"class":        "PNV20B",
+     "Jss":         8,
+    "Android":         5,
+ }];
+
+localStorage.setItem("students", JSON.stringify(newStudent));
+
+var retrievedObject = localStorage.getItem("students");
+var stored          = JSON.parse(retrievedObject);
+var newStudent2 = [{
+    "name":        "Lương Trung Kiên",
+ 	"class":        "PNV20B",
+     "Jss":         8,
+    "Android":         5,
+}];
+var stored = Object.assign(stored, newStudent2);
+
+localStorage.setItem("students", JSON.stringify(stored));
+var result = localStorage.getItem("students");
+
+console.log(result);
+document.getElementById('output').innerHTML = result;
+	</script>
+
+	<script type="text/javascript">
+		values = [];
+function addRecord() {
+  var ten = document.getElementById('name');
+  values.push(ten.value);
+  ten.value = "";  
+  var lop = document.getElementById('class');
+  values.push(lop.value);
+  lop.value = ""; 
+  var jss = document.getElementById('jss');
+  values.push(jss.value);
+  jss.value = ""; 
+  var android = document.getElementById('android');
+  values.push(android.value);
+  android.value = "";  
+
+  localStorage.setItem("students", JSON.stringify(values));
+ var retrievedObject = localStorage.getItem("students");
+var stored          = JSON.parse(retrievedObject);
+var result = localStorage.getItem("students");
+console.log(result);
+alert("Thêm thành công")
+
+}
+function displayRecord() {
+	
+	document.getElementById("values").innerHTML += values.join(" : ") + "<br/>";
+ 
+}
+
+function delete_iterm(){
+		document.getElementById("values").innerHTML= "";
+		document.getElementById("output").innerHTML = "";
+
+
+	}
+	</script>
+
+	
+</body>
+</html>
